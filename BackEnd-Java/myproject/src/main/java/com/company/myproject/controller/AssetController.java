@@ -1,7 +1,6 @@
 package com.company.myproject.controller;
 
 import com.company.myproject.dto.AssetDto;
-import com.company.myproject.dto.AssetPersistDto;
 import com.company.myproject.model.Pageable;
 import com.company.myproject.service.AssetService;
 import org.springframework.beans.factory.annotation.Autowired;

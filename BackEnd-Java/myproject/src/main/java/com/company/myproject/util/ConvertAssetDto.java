@@ -1,7 +1,6 @@
 package com.company.myproject.util;
 
 import com.company.myproject.dto.AssetDto;
-import com.company.myproject.dto.AssetPersistDto;
 import com.company.myproject.dto.AssetTypeDto;
 import com.company.myproject.dto.CompanyDto;
 import com.company.myproject.model.Asset;
@@ -9,7 +8,6 @@ import com.company.myproject.model.AssetOffice;
 import com.company.myproject.model.AssetType;
 import com.company.myproject.model.Company;
 
-import javax.persistence.Convert;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;

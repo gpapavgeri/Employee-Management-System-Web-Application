@@ -1,10 +1,8 @@
 package com.company.myproject.service;
 
 import com.company.myproject.dto.AssetDto;
-import com.company.myproject.dto.AssetPersistDto;
 import com.company.myproject.model.Asset;
 import com.company.myproject.model.AssetOffice;
-import com.company.myproject.model.OfficeEmployee;
 import com.company.myproject.model.Pageable;
 
 import java.util.List;

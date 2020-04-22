@@ -5,8 +5,6 @@ import com.company.myproject.dao.AssetTypeRepository;
 import com.company.myproject.dao.CompanyRepository;
 import com.company.myproject.dao.OfficeRepository;
 import com.company.myproject.dto.AssetDto;
-import com.company.myproject.dto.AssetPersistDto;
-import com.company.myproject.dto.AssetTypeDto;
 import com.company.myproject.exception.EntityNotFoundException;
 import com.company.myproject.exception.BadRequestException;
 import com.company.myproject.model.*;

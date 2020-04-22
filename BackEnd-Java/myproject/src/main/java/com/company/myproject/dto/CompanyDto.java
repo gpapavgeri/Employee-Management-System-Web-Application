@@ -1,8 +1,11 @@
 package com.company.myproject.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.util.Set;
 import java.util.UUID;
 
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class CompanyDto {
 
     private UUID id;
