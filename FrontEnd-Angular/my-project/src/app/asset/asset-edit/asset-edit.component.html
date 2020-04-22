@@ -1,0 +1,127 @@
+<div class="container">
+    <div *ngIf="assetForm">
+        <h1>{{ 'asset.assetEdit.AssetForm' | translate }}</h1>
+        <form [formGroup]="assetForm" (ngSubmit)="onSubmit()">
+            <div *ngIf="existed">
+                <label for="assetId">{{ 'asset.assetEdit.Id' | translate }}</label>
+                <input type="text" id="assetId" formControlName="id" disabled>
+            </div>
+            <div *ngIf="existed && company">
+                <label for="company">{{ 'asset.assetEdit.CompanyExists' | translate }}</label>
+                <input type="text" id="company" formControlName="company" disabled>
+            </div>
+            <div>
+                <label for="serialNumber">{{ 'asset.assetEdit.SerialNumber' | translate }}</label>
+                <input type="text" id="serialNumber" formControlName="serialNumber">
+            </div>
+            <div>
+                <label for="brand">{{ 'asset.assetEdit.Brand' | translate }}</label>
+                <input type="text" id="brand" formControlName="brand">
+            </div>
+            <div *ngIf="!existed && companies">
+                <label for="company">{{ 'asset.assetEdit.Company' | translate }}</label>
+                <mat-form-field>
+                    <mat-label>{{ 'asset.assetEdit.SelectCompany' | translate }}</mat-label>
+                    <mat-select formControlName="company" id="company" [disabled]="existed"
+                        [compareWith]="compareCompany" (selectionChange)="onCompanySelection($event)">
+                        <mat-option *ngFor="let company of companies" [value]="company">
+                            {{company.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div>
+                <fieldset>
+                    <legend>
+                        <label for="assetType">{{ 'asset.assetEdit.AssetType' | translate }}</label>
+                    </legend>
+                    <mat-form-field>
+                        <mat-label>{{ 'asset.assetEdit.SelectAssetType' | translate }}</mat-label>
+                        <mat-select formControlName="assetType" [compareWith]="compareFn" id="assetType">
+                            <mat-option *ngFor="let assetType of assetTypes" [value]="assetType">
+                                {{assetType.type}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <button type="button" mat-raised-button class="create-button"
+                        (click)="openDialog()">
+                        <mat-icon>add</mat-icon>{{ 'asset.assetEdit.CreateAssetType' | translate }}
+                    </button>
+                </fieldset>
+
+                <button type="button" mat-raised-button (click)="openOffices()" [disabled]="assetInOffices">
+                    <mat-icon>add</mat-icon>{{ 'asset.assetEdit.AddOffices' | translate }}
+                </button>
+            </div>
+
+            <div *ngIf="assetInOffices">
+                <label for="table">{{ 'asset.assetEdit.Offices' | translate }}</label>
+                <table id="table">
+                    <tr>
+                        <th class="column-name">{{ 'asset.assetEdit.Office' | translate }}</th>
+                        <th class="column-name">{{ 'asset.assetEdit.DateFrom' | translate }}</th>
+                        <th class="column-name">{{ 'asset.assetEdit.DateTo' | translate }}</th>
+                        <th>
+                            <button mat-button type="button" (click)="addOffice()">
+                                <mat-icon>add</mat-icon>{{ 'asset.assetEdit.AddOffice' | translate }}
+                            </button>
+                        </th>
+                    </tr>
+                </table>
+                <table formArrayName="offices"
+                    *ngFor="let control of assetForm.get('offices')['controls']; let i = index">
+                    <tr [formGroupName]="i">
+                        <td>
+                            <mat-form-field>
+                                <mat-select formControlName="officeId">
+                                    <mat-optgroup *ngFor="let branch of branches" [label]="branch.name">
+                                        <mat-option *ngFor="let office of branch.offices" [value]="office.id">
+                                            {{office.code}}
+                                        </mat-option>
+                                    </mat-optgroup>
+                                </mat-select>
+                            </mat-form-field>
+                        </td>
+                        <td>
+                            <mat-form-field>
+                                <mat-label>{{ 'asset.assetEdit.DateFrom' | translate }}
+                                </mat-label>
+                                <input matInput [matDatepicker]="picker1" formControlName="dateFrom">
+                                <mat-datepicker-toggle matSuffix [for]="picker1">
+                                </mat-datepicker-toggle>
+                                <mat-datepicker #picker1></mat-datepicker>
+                            </mat-form-field>
+                        </td>
+                        <td>
+                            <mat-form-field>
+                                <mat-label>{{ 'asset.assetEdit.DateTo' | translate }}
+                                </mat-label>
+                                <input matInput [matDatepicker]="picker2" formControlName="dateTo">
+                                <mat-datepicker-toggle matSuffix [for]="picker2">
+                                </mat-datepicker-toggle>
+                                <mat-datepicker #picker2></mat-datepicker>
+                            </mat-form-field>
+                        </td>
+                        <td>
+                            <button type="button" mat-icon-button color="warn"
+                                title="{{ 'asset.assetEdit.DeleteOffice' | translate }}" (click)="removeOffice(i)">
+                                <mat-icon>delete_outline</mat-icon>
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <br>
+            <div *ngIf="!assetForm.valid && assetForm.touched" class="warning">
+                Fields with (*) are required
+            </div>
+
+            <button type="submit" mat-button class="submit"
+                [disabled]="!assetForm.valid">{{ 'asset.assetEdit.Submit' | translate }}</button>
+
+        </form>
+    </div>
+</div>

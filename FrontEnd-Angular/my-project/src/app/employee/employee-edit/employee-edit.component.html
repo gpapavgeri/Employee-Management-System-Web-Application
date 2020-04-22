@@ -1,0 +1,98 @@
+<div class="container">
+    <div *ngIf="employeeForm">
+        <h1>{{ 'employee.employeeEdit.EmployeeForm' | translate }}</h1>
+        <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+            <div *ngIf="existed">
+                <label for="employeeId">{{ 'employee.employeeEdit.Id' | translate }}</label>
+                <input type="text" id="employeeId" formControlName="id" disabled>
+            </div>
+            <div *ngIf="existed && company">
+                <label for="company">{{ 'employee.employeeEdit.CompanyExists' | translate }}</label>
+                <input type="text" id="company" disabled formControlName="company">
+            </div>
+            <div>
+                <label for="firstName">{{ 'employee.employeeEdit.FirstName' | translate }}</label>
+                <input type="text" id="firstName" formControlName="firstName">
+            </div>
+            <div>
+                <label for="lastName">{{ 'employee.employeeEdit.LastName' | translate }}</label>
+                <input type="text" id="lastName" formControlName="lastName">
+            </div>
+            <div *ngIf="!existed && companies">
+                <label for="company">{{ 'employee.employeeEdit.Company' | translate }}</label>
+                <mat-form-field id="company">
+                    <mat-label>{{ 'employee.employeeEdit.SelectCompany' | translate }}</mat-label>
+                    <mat-select formControlName="company" (selectionChange)="onCompanySelection($event)" [compareWith]="compareCompany">
+                        <mat-option *ngFor="let company of companies" [value]="company">
+                            {{company.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div *ngIf="companyIsSelected">
+                <label for="table">{{ 'employee.employeeEdit.Offices' | translate }}</label>
+                <table id="table">
+                    <tr>
+                        <th style="width: 120px;">{{ 'employee.employeeEdit.Office' | translate }}</th>
+                        <th style="width: 141.6px;">{{ 'employee.employeeEdit.DateFrom' | translate }}</th>
+                        <th style="width: 141.6px;">{{ 'employee.employeeEdit.DateTo' | translate }}</th>
+                        <th>
+                            <button mat-button type="button" (click)="addOffice()">
+                                <mat-icon>add</mat-icon>{{ 'employee.employeeEdit.AddOffice' | translate }}
+                            </button>
+                        </th>
+                    </tr>
+                </table>
+                <table formArrayName="offices"
+                    *ngFor="let control of employeeForm.get('offices')['controls']; let i = index">
+                    <tr [formGroupName]="i">
+                        <td>
+                            <mat-form-field>
+                                <mat-select formControlName="officeId">
+                                    <mat-optgroup *ngFor="let branch of branches" [label]="branch.name">
+                                        <mat-option *ngFor="let office of branch.offices" [value]="office.id">
+                                            {{office.code}}
+                                        </mat-option>
+                                    </mat-optgroup>
+                                </mat-select>
+                            </mat-form-field>
+                        </td>
+                        <td>
+                            <mat-form-field>
+                                <mat-label>{{ 'employee.employeeEdit.DateFrom' | translate }}
+                                </mat-label>
+                                <input matInput [matDatepicker]="picker1" formControlName="dateFrom">
+                                <mat-datepicker-toggle matSuffix [for]="picker1">
+                                </mat-datepicker-toggle>
+                                <mat-datepicker #picker1></mat-datepicker>
+                            </mat-form-field>
+                        </td>
+                        <td>
+                            <mat-form-field>
+                                <mat-label>{{ 'employee.employeeEdit.DateTo' | translate }}
+                                </mat-label>
+                                <input matInput [matDatepicker]="picker2" formControlName="dateTo">
+                                <mat-datepicker-toggle matSuffix [for]="picker2">
+                                </mat-datepicker-toggle>
+                                <mat-datepicker #picker2></mat-datepicker>
+                            </mat-form-field>
+                        </td>
+                        <td>
+                            <button type="button" mat-icon-button color="warn"
+                                title="{{ 'employee.employeEdit.DeleteOffice' | translate }}" (click)="removeOffice(i)">
+                                <mat-icon>delete_outline</mat-icon>
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <br>
+            <div *ngIf="!employeeForm.valid && employeeForm.touched" class="warning">
+                Fields with (*) are required
+            </div>
+            <button type="submit" mat-button class="submit" [disabled]="!employeeForm.valid">
+                {{ 'employee.employeeEdit.Submit' | translate }}</button>
+
+        </form>
+    </div>
+</div>

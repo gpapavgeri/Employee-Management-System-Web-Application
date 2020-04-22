@@ -1,0 +1,17 @@
+table {
+    width: 98%;
+  }
+  
+  .select-button {
+    margin-left: 10px;
+  }
+  
+  .create-button {
+    padding: 8px 16px 11.7px 16px !important;
+  }
+  
+  .restore-button {
+    padding: 8px 16px 11.7px 16px !important;
+    margin-left: 10px;
+  }
+  

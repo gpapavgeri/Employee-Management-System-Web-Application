@@ -1,0 +1,200 @@
+{
+    "navigation": {
+        "CorporateGroup": "Όμιλος Εταιριών",
+        "Companies": "Εταιρίες",
+        "Branches": "Παραρτήματα",
+        "Assets": "Περιουσιακά Στοιχεία",
+        "AssetTypes": "Τύποι Περιουσιακων Στοιχείων",
+        "Offices": "Γραφεία",
+        "Employees": "Υπάλληλοι"
+    },
+    "company": {
+        "companyEdit": {
+            "CompanyForm": "Φόρμα Εταιρίας",
+            "Id": "Κωδικός",
+            "Name": "Όνομα*",
+            "Submit": "Υποβολή"
+        },
+        "companyListing": {
+            "Companies": "Εταιρίες",
+            "CreateCompany": "Νέα Εταιρία",
+            "OrderBy": "Ταξινόμηση",
+            "None": "-- Καμία --",
+            "ResetFilters": "Επαναφορά Φίλτρων",
+            "Id": "Κωδικός",
+            "Name": "Όνομα",
+            "EditCompany": "Επεξεργασία",
+            "DeleteCompany": "Διαγραφή"
+        }
+    },
+    "branch": {
+        "branchEdit": {
+            "BranchForm": "Φόρμα Παραρτήματος",
+            "Id": "Κωδικός",
+            "Name": "Όνομα*",
+            "Company": "Εταιρία*",
+            "CompanyExists": "Εταιρία",
+            "SelectCompany":"Επιλογή Εταιρίας",
+            "Submit": "Υποβολή"
+        },
+        "branchListing": {
+            "Branches": "Παραρτήματα",
+            "CreateBranch": "Νέo Παράρτημα",
+            "SelectCompany": "Επιλογή Εταιρίας",
+            "OrderBy": "Ταξινόμηση",
+            "None": "-- Καμία --",
+            "ResetFilters": "Επαναφορά Φίλτρων",
+            "Id": "Κωδικός",
+            "Name": "Όνομα",
+            "CompanyName": "Όνομα Εταιρίας",
+            "EditBranch": "Επεξεργασία",
+            "DeleteBranch": "Διαγραφή"
+        }
+    },
+    "asset": {
+        "assetEdit": {
+            "AssetForm": "Φόρμα Περιουσιακού Στοιχείου",
+            "Id": "Κωδικός",
+            "SerialNumber": "Σεριακός Αριθμός*",
+            "Brand": "Μοντέλο*",
+            "Company": "Εταιρία*",
+            "CompanyExists": "Εταιρία",
+            "SelectCompany": "Επιλογή Εταιρίας",
+            "AssetType": "Τύπος Περιουσιακού Στοιχείου*",
+            "SelectAssetType": "Επιλογή Τύπου Περιουσιακού Στοιχείου",
+            "CreateAssetType": "Νέος Τύπος Περιουσιακού Στοιχείου",
+            "Office": "Γραφείο*",
+            "Offices": "Γραφεία",
+            "DateFrom": "Ημερομηνία (Από)",
+            "DateTo": "Ημερομηνία (Έως)",
+            "Submit": "Υποβολή",
+            "AddOffices": "Προσθήκη Γραφείων για το Περιουσιακό Στοιχείο",
+            "AddOffice": "Προσθήκη Γραφέιου",
+            "DeleteOffice": "Διαγραφή"
+        },
+        "assetListing": {
+            "Assets": "Περιουσιακά Στοιχεία",
+            "CreateAsset": "Νέο Περιουσιακό Στοιχείο",
+            "SelectCompany": "Επιλογή Εταιρίας",
+            "SelectOffice": "Επιλογή Γραφείου",
+            "SelectAssetType": "Επιλογή Τύπου Περιουσιακού Στοιχείου",
+            "OrderBy": "Ταξινόμηση",
+            "None": "-- Καμία --",
+            "ResetFilters": "Επαναφορά Φίλτρων",
+            "Id": "Κωδικός",
+            "SerialNumber": "Σεριακός Αριθμός",
+            "Brand": "Μοντέλο",
+            "Company": "Εταιρία",
+            "OfficeId": "Κωδικός Γραφείου",
+            "AssetType": "Περιουσιακό Στοιχείο",
+            "EditAsset": "Επεξεργασία",
+            "DeleteAsset": "Διαγραφή"
+        }
+    },
+    "assetType": {
+        "assetTypeEdit": {
+            "AssetTypeForm": "Φόρμα Τύπου Περιουσιακού Στοιχείου",
+            "Id": "Κωδικός",
+            "Type": "Τύπος*",
+            "Submit": "Υποβολή"
+        },
+        "assetTypeListing": {
+            "AssetTypes": "Τύποι Περιουσιακών Στοιχείων",
+            "CreateAssetType": "Νέος Τύπος Περιουσιακού Στοιχείου",
+            "OrderBy": "Ταξινόμηση",
+            "None": "-- Καμία --",
+            "ResetFilters": "Επαναφορά Φίλτρων",
+            "Id": "Κωδικός",
+            "Type": "Τύπος",
+            "EditAssetType": "Επεξεργασία",
+            "DeleteAssetType": "Διαγραφή"
+        }
+    },
+    "office": {
+        "officeEdit": {
+            "OfficeForm": "Φόρμα Γραφείου",
+            "Id": "Κωδικός",
+            "Code": "Όνομα*",
+            "Company": "Εταιρία*",
+            "SelectCompany":"Επιλογή Εταιρίας",
+            "Branch": "Παράρτημα*",
+            "SelectBranch": "Επιλογή Παραρτήματος",
+            "AddEmployees": "Προσθήκη Υπαλλήλων",
+            "AddEmployee": "Προσθήκη Υπαλλήλου",
+            "Employee": "Υπάλληλος*",
+            "DateFrom": "Ημερομηνία (Από)*",
+            "DateTo": "Ημερομηνία (Έως)",
+            "Employees": "Υπάλληλοι",
+            "DeleteOffice": "Διαγραφή",
+            "Assets": "Περιουσιακά Στοιχεία",
+            "Asset": "Περιουσιακό Στοιχείο",
+            "AddAsset": "Προσθήκη Περιουσιακού Στοιχείου",
+            "DeleteAsset":"Διαγραφή Περιουσιακού Στοιχείου",
+            "Submit": "Υποβολή"
+        },
+        "officeListing": {
+            "Offices": "Γραφεία",
+            "CreateOffice": "Νέο Γραφείο",
+            "SelectCompany":"Επιλογή Εταιρίας",
+            "SelectBranch": "Επιλογή Παραρτήματος",
+            "OrderBy": "Ταξινόμηση",
+            "None": "-- Καμία --",
+            "ResetFilters": "Επαναφορά Φίλτρων",
+            "Id": "Κωδικός",
+            "Code": "Όνομα",
+            "Branch": "Παράρτημα",
+            "EditOffice": "Επεξεργασία",
+            "DeleteOffice": "Διαγραφή"
+        }
+    },
+    "employee": {
+        "employeeEdit": {
+            "EmployeeForm": "Φόρμα Υπαλλήλου",
+            "Id": "Κωδικός",
+            "FirstName": "Όνομα*",
+            "LastName": "Επώνυμο*",
+            "Branch": "Παράρτημα",
+            "Company": "Εταιρία*",
+            "CompanyExists": "Εταιρία",
+            "SelectCompany":"Επιλογή Εταιρίας",
+            "Office": "Γραφείο*",
+            "Offices": "Γραφεία*",
+            "DateFrom": "Ημερομηνία (Από)*",
+            "DateTo": "Ημερομηνία (Έως)",
+            "Submit": "Υποβολή",
+            "AddOffice": "Προσθήκη Γραφέιου",
+            "DeleteOffice": "Διαγραφή"
+        },
+        "employeeListing": {
+            "Employees": "Υπάλληλοι",
+            "CreateEmployee": "Νέος Υπάλληλος",
+            "SelectCompany":"Επιλογή Εταιρίας",
+            "SelectBranch":"Επιλογή Παραρτήματος",
+            "SelectOffice": "Επιλογή Γραφείου",
+            "OrderBy": "Ταξινόμηση",
+            "None": "-- Καμία --",
+            "ResetFilters": "Επαναφορά Φίλτρων",
+            "Id": "Κωδικός",
+            "FirstName": "Όνομα",
+            "LastName": "Επώνυμο",
+            "OfficeId": "Κωδικός Γραφείου",
+            "EditEmployee": "Επεξεργασία",
+            "DeleteEmployee": "Διαγραφή"
+        }
+    },
+    "confirmationDialog": {
+        "msg": "Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτή την εγγραφή ?",
+        "NO": "ΟΧΙ",
+        "YES": "ΝΑΙ",
+        "Cancel": "Ακύρωση",
+        "Create": "Δημιουργία"
+    },
+    "paginator": {
+        "itemsPerPage": "Εγγραφές ανά σελίδα",
+        "nextPage": "Επόμενη σελίδα",
+        "previousPage": "Προηγούμενη σελίδα",
+        "firstPage": "Πρώτη σελίδα",
+        "lastPage": "Τελευταία σελίδα",
+        "range": "{{startIndex}} - {{endIndex}} από {{length}}"
+    }
+}

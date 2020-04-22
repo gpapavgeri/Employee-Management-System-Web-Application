@@ -1,0 +1,58 @@
+<div style="height: 100vh">
+
+    <mat-toolbar color="primary">
+        <div fxShow="true" fxHide.gt-sm="true">
+            <button mat-icon-button (click)="sidenav.toggle()">
+                <mat-icon>menu</mat-icon>
+            </button>
+        </div>
+        <h1 [routerLink]="'/company'">{{ 'navigation.CorporateGroup' | translate }}</h1>
+        <span class="example-spacer"></span>
+        <div fxShow="true" fxHide.lt-md="true">
+            <button mat-button [routerLink]="'/company'">{{ 'navigation.Companies' | translate }}</button>
+            <button mat-button [routerLink]="'/branch'">{{ 'navigation.Branches' | translate }}</button>
+            <button mat-button [routerLink]="'/asset'">{{ 'navigation.Assets' | translate }}</button>
+            <button mat-button [routerLink]="'/assetType'">{{ 'navigation.AssetTypes' | translate }}</button>
+            <button mat-button [routerLink]="'/office'">{{ 'navigation.Offices' | translate }}</button>
+            <button mat-button [routerLink]="'/employee'">{{ 'navigation.Employees' | translate }}</button>
+            <button mat-button>
+                <mat-form-field>
+                    <mat-label>{{language}}</mat-label>
+                    <mat-select>
+                        <mat-option (click)="setLanguage('EN')">English</mat-option>
+                        <mat-option (click)="setLanguage('GR')">Greek</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </button>
+        </div>
+    </mat-toolbar>
+
+    <mat-sidenav-container fxFlexFill class="example-container">
+        <mat-sidenav #sidenav fxLayout="column">
+            <div fxLayout="column">
+                <button mat-button (click)="sidenav.toggle()">Close</button>
+                <button mat-button>
+                    <mat-form-field>
+                        <mat-label>{{language}}</mat-label>
+                        <mat-select>
+                            <mat-option (click)="setLanguage('EN')">English</mat-option>
+                            <mat-option (click)="setLanguage('GR')">Greek</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </button>
+                <button mat-button [routerLink]="'/company'">{{ 'navigation.Companies' | translate }}</button>
+                <button mat-button [routerLink]="'/branch'">{{ 'navigation.Branches' | translate }}</button>
+                <button mat-button [routerLink]="'/asset'">{{ 'navigation.Assets' | translate }}</button>
+                <button mat-button [routerLink]="'/assetType'">{{ 'navigation.AssetTypes' | translate }}</button>
+                <button mat-button [routerLink]="'/office'">{{ 'navigation.Offices' | translate }}</button>
+                <button mat-button [routerLink]="'/employee'">{{ 'navigation.Employees' | translate }}</button>
+            </div>
+        </mat-sidenav>
+        <mat-sidenav-content fxFlexFill>
+            <div style="height: 88vh;">
+                <router-outlet></router-outlet>
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+
+</div>

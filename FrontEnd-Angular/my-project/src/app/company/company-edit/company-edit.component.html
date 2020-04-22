@@ -1,0 +1,22 @@
+<div class="container">
+    <div *ngIf="companyForm">
+        <h1>{{ 'company.companyEdit.CompanyForm' | translate }}</h1>
+        <form [formGroup]="companyForm" (ngSubmit)="onSubmit()">
+            <div *ngIf="existed">
+                <label for="companyId">{{ 'company.companyEdit.Id' | translate }}</label>
+                <input type="text" id="companyId" formControlName="id" disabled>
+            </div>
+
+            <div>
+                <label for="name">{{ 'company.companyEdit.Name' | translate }}</label>
+                <input type="text" id="name" formControlName="name" required #name>
+            </div>
+            <br>
+            <div *ngIf="!companyForm.valid && companyForm.touched" class="warning">
+                Fields with (*) are required
+            </div>
+            <button type="submit" mat-button class="submit"
+                [disabled]="!companyForm.valid">{{ 'company.companyEdit.Submit' | translate }}</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,79 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    padding-top: 24px;
+}
+
+label {
+    display: block;
+    width: 7em;
+    margin: .5em 0;
+    color: #607D8B;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+input {
+    height: 2em;
+    font-size: 1em;
+    padding-left: .4em;
+    width: 300px;
+}
+
+button:hover {
+    background-color: #cfd8dc;
+}
+
+button:disabled {
+    background-color: #eee;
+    color: #ccc;
+    cursor: auto;
+}
+
+body {
+    margin: 2em;
+}
+
+body, input[text], button {
+    color: #333;
+    font-family: Cambria, Georgia;
+}
+
+button {
+    font-family: Arial;
+    background-color: #eee;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    cursor: hand;
+}
+
+.create-button {
+    margin-left: 20px;
+}
+
+a {
+    text-decoration: none;
+}
+
+fieldset {
+    display: block;
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-bottom: 20px;
+    padding-top: 0.35em;
+    padding-bottom: 0.625em;
+    padding-left: 0.75em;
+    padding-right: 0.2em;
+    border: 1.5px groove;
+    width: 35%;
+  }
+
+  legend {
+      border-bottom: none;
+      margin-bottom: 0px;
+      width: 30%;
+  }
+
+  

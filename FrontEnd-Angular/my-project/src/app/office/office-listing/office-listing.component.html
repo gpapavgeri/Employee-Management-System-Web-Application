@@ -1,0 +1,93 @@
+<div class="container">
+    <mat-toolbar>
+        <span class="fill-remaining-space"></span>
+        <span>{{ 'office.officeListing.Offices' | translate }}</span>
+        <span class="fill-remaining-space"></span>
+    </mat-toolbar>
+
+    <div class="search-div">
+        <button mat-raised-button routerLink="/office/new" class="create-button">
+            <mat-icon>add</mat-icon>{{ 'office.officeListing.CreateOffice' | translate }}
+        </button>
+
+        <button mat-raised-button class="select-button">
+            <mat-form-field>
+                <mat-label>{{ 'office.officeListing.SelectCompany' | translate }}</mat-label>
+                <mat-select [(ngModel)]="company" [compareWith]="compareFn" (selectionChange)="selectCompany()">
+                    <mat-option (click)="refreshCompanies()">{{ 'office.officeListing.None' | translate }}</mat-option>
+                    <mat-option *ngFor="let company of companies" [value]="company">
+                        {{company.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </button>
+
+        <button mat-raised-button class="select-button">
+            <mat-form-field>
+                <mat-label>{{ 'office.officeListing.SelectBranch' | translate }}</mat-label>
+                <mat-select [(ngModel)]="branch" (selectionChange)="refreshOffices()">
+                    <mat-option>{{ 'office.officeListing.None' | translate }}</mat-option>
+                    <mat-optgroup *ngFor="let company of companies" [label]="company.name">
+                        <mat-option *ngFor="let branch of company.branches" [value]="branch">
+                            {{branch.name}}
+                        </mat-option>
+                    </mat-optgroup>
+                </mat-select>
+            </mat-form-field>
+        </button>
+
+        <button mat-raised-button class="select-button">
+            <mat-form-field>
+                <mat-label>{{ 'office.officeListing.OrderBy' | translate }}</mat-label>
+                <mat-select [(ngModel)]="orderBy" (selectionChange)="refreshOffices()">
+                    <mat-option>{{ 'office.officeListing.None' | translate }}</mat-option>
+                    <mat-option *ngFor="let officeField of officeFields" [value]="officeField.value">
+                        {{ 'office.officeListing.'+ officeField.name | translate }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </button>
+
+        <button mat-raised-button class="restore-button" (click)="clearFilters()">
+            <mat-icon>restore</mat-icon>{{ 'office.officeListing.ResetFilters' | translate }}
+        </button>
+    </div>
+
+    <div class="mat-elevation-z8">
+        <table class="table">
+            <tr>
+                <th>{{ 'office.officeListing.Id' | translate }}</th>
+                <th>{{ 'office.officeListing.Code' | translate }}</th>
+                <th>{{ 'office.officeListing.Branch' | translate }}</th>
+            </tr>
+            <tr *ngFor="let office of offices">
+                <td>
+                    <span>{{ office.id }}</span>
+                </td>
+                <td>
+                    {{ office.code}}
+                </td>
+                <td>
+                    {{ office.branch.name}}
+                </td>
+                <td>
+                    <a routerLink="/office/{{office.id}}">
+                        <button mat-icon-button title="{{ 'office.officeListing.EditOffice' | translate }}">
+                            <mat-icon>launch</mat-icon>
+                        </button>
+                    </a>
+                </td>
+                <td>
+                    <button mat-icon-button color="warn" title="{{ 'office.officeListing.DeleteOffice' | translate }}"
+                        (click)="delete(office)">
+                        <mat-icon>delete_outline</mat-icon>
+                    </button>
+                </td>
+            </tr>
+        </table>
+        <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" [showFirstLastButtons]="true"
+            (page)="paginateOffices($event)">
+        </mat-paginator>
+    </div>
+
+</div>

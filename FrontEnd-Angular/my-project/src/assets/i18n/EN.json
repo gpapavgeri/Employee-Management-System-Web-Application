@@ -1,0 +1,200 @@
+{
+    "navigation": {
+        "CorporateGroup": "Corporate Group",
+        "Companies": "Companies",
+        "Branches": "Branches",
+        "Assets": "Assets",
+        "AssetTypes": "AssetTypes",
+        "Offices": "Offices",
+        "Employees": "Employees"
+    },
+    "company": {
+        "companyEdit": {
+            "CompanyForm": "Company Form",
+            "Id": "Id",
+            "Name": "Name*",
+            "Submit": "Submit"
+        },
+        "companyListing": {
+            "Companies": "Companies",
+            "CreateCompany": "Create Company",
+            "OrderBy": "OrderBy",
+            "None": "-- None --",
+            "ResetFilters": "Reset Filters",
+            "Id": "Id",
+            "Name": "Name",
+            "EditCompany": "Edit Company",
+            "DeleteCompany": "Delete Company"
+        }
+    },
+    "branch": {
+        "branchEdit": {
+            "BranchForm": "Branch Form",
+            "Id": "Id",
+            "Name": "Name*",
+            "Company": "Company*",
+            "CompanyExists": "Company",
+            "SelectCompany":"Select Company",
+            "Submit": "Submit"
+        },
+        "branchListing": {
+            "Branches": "Branches",
+            "CreateBranch": "Create Branch",
+            "SelectCompany": "Select Company",
+            "OrderBy": "OrderBy",
+            "None": "-- None --",
+            "ResetFilters": "Reset Filters",
+            "Id": "Id",
+            "Name": "Name",
+            "CompanyName": "Company Name",
+            "EditBranch": "Edit Branch",
+            "DeleteBranch": "Delete Branch"
+        }
+    },
+    "asset": {
+        "assetEdit": {
+            "AssetForm": "Asset Form",
+            "Id": "Id",
+            "SerialNumber": "Serial Number*",
+            "Brand": "Brand*",
+            "Company": "Company*",
+            "CompanyExists": "Company",
+            "SelectCompany": "Select Company",
+            "AssetType": "Asset Type*",
+            "SelectAssetType": "Select Asset Type",
+            "CreateAssetType": "Create Asset Type",
+            "Office": "Office*",
+            "Offices": "Offices",
+            "DateFrom": "Date From",
+            "DateTo": "Date To",
+            "Submit": "Submit",
+            "AddOffices": "Add Offices to Asset",
+            "AddOffice": "Add Office",
+            "DeleteOffice": "Delete Office"
+        },
+        "assetListing": {
+            "Assets": "Assets",
+            "CreateAsset": "Create Asset",
+            "SelectCompany": "Select Company",
+            "SelectOffice": "Select Office",
+            "SelectAssetType": "Select Asset Type",
+            "OrderBy": "OrderBy",
+            "None": "-- None --",
+            "ResetFilters": "Reset Filters",
+            "Id": "Id",
+            "SerialNumber": "SerialNumber",
+            "Brand": "Brand",
+            "Company": "Company",
+            "OfficeId": "Office Id",
+            "AssetType": "AssetType",
+            "EditAsset": "Edit Asset",
+            "DeleteAsset": "Delete Asset"
+        }
+    },
+    "assetType": {
+        "assetTypeEdit": {
+            "AssetTypeForm": "Asset Type Form",
+            "Id": "Id",
+            "Type": "Type*",
+            "Submit": "Submit"
+        },
+        "assetTypeListing": {
+            "AssetTypes": "AssetTypes",
+            "CreateAssetType": "Create Asset Type",
+            "OrderBy": "Order By",
+            "None": "-- None --",
+            "ResetFilters": "Reset Filters",
+            "Id": "Id",
+            "Type": "Type",
+            "EditAssetType": "Edit AssetType",
+            "DeleteAssetType": "Delete AssetType"
+        }
+    },
+    "office": {
+        "officeEdit": {
+            "OfficeForm": "Office Form",
+            "Id": "Id",
+            "Code": "Code*",
+            "Company": "Company*",
+            "SelectCompany":"Select Company",
+            "Branch": "Branch*",
+            "SelectBranch": "Select Branch",
+            "AddEmployees": "Add Employees",
+            "AddEmployee": "Add Employee",
+            "Employee": "Employee*",
+            "DateFrom": "Date From*",
+            "DateTo": "Date To",
+            "Employees": "Employees",
+            "DeleteOffice": "Delete Office",
+            "Assets": "Assets",
+            "Asset": "Asset*",
+            "AddAsset": "Add Asset",
+            "DeleteAsset":"Delete Asset",
+            "Submit": "Submit"
+        },
+        "officeListing": {
+            "Offices": "Offices",
+            "CreateOffice": "Create Office",
+            "SelectCompany":"Select Company",
+            "SelectBranch": "Select Branch",
+            "OrderBy": "Order By",
+            "None": "-- None --",
+            "ResetFilters": "Reset Filters",
+            "Id": "Id",
+            "Code": "Code",
+            "Branch": "Branch",
+            "EditOffice": "Edit Office",
+            "DeleteOffice": "Delete Office"
+        }
+    },
+    "employee": {
+        "employeeEdit": {
+            "EmployeeForm": "Employee Form",
+            "Id": "Id",
+            "FirstName": "First Name*",
+            "LastName": "Last Name*",
+            "Branch": "Branch",
+            "Company": "Company*",
+            "CompanyExists": "Company",
+            "SelectCompany":"Select Company",
+            "Office": "Office*",
+            "Offices": "Offices*",
+            "DateFrom": "Date From*",
+            "DateTo": "Date To",
+            "Submit": "Submit",
+            "AddOffice": "Add Office",
+            "DeleteOffice": "Delete Office"
+        },
+        "employeeListing": {
+            "Employees": "Employees",
+            "CreateEmployee": "Create Employee",
+            "SelectCompany":"Select Company",
+            "SelectBranch":"Select Branch",
+            "SelectOffice": "Select Office",
+            "OrderBy": "Order By",
+            "None": "-- None --",
+            "ResetFilters": "Reset Filters",
+            "Id": "Id",
+            "FirstName": "First Name",
+            "LastName": "Last Name",
+            "OfficeId": "Office Id",
+            "EditEmployee": "Edit Employee",
+            "DeleteEmployee": "Delete Employee"
+        }
+    },
+    "confirmationDialog": {
+        "msg": "Are you sure to delete this record ?",
+        "NO": "NO",
+        "YES": "YES",
+        "Cancel": "Cancel",
+        "Create": "Create"
+    },
+    "paginator": {
+        "itemsPerPage": "Items per page",
+        "nextPage": "Next page",
+        "previousPage": "Previous page",
+        "firstPage": "First page",
+        "lastPage": "Last page",
+        "range": "{{startIndex}} - {{endIndex}} of {{length}}"
+    }
+}

@@ -1,0 +1,36 @@
+<div class="container">
+    <div *ngIf="branchForm">
+        <h1>{{ 'branch.branchEdit.BranchForm' | translate }}</h1>
+        <form [formGroup]="branchForm" (ngSubmit)="onSubmit()">
+            <div *ngIf="existed">
+                <label for="branchId">{{ 'branch.branchEdit.Id' | translate }}</label>
+                <input type="text" id="branchId" formControlName="id" disabled>
+            </div>
+            <div *ngIf="!existed && companies">
+                <label for="company">{{ 'branch.branchEdit.Company' | translate }}</label>
+                <mat-form-field id="company">
+                    <mat-label>{{ 'branch.branchEdit.SelectCompany' | translate }}</mat-label>
+                    <mat-select formControlName="company" [disabled]="existed">
+                        <mat-option *ngFor="let company of companies" [value]="company">
+                            {{company.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div *ngIf="existed && company">
+                <label for="company">{{ 'branch.branchEdit.CompanyExists' | translate }}</label>
+                <input type="text" id="company" value="{{company.name}}" disabled>
+            </div>
+            <div>
+                <label for="name">{{ 'branch.branchEdit.Name' | translate }}</label>
+                <input type="text" id="name" formControlName="name">
+            </div>
+            <br>
+            <div *ngIf="!branchForm.valid && branchForm.touched" class="warning">
+                Fields with (*) are required
+            </div>
+            <button type="submit" mat-button class="submit"
+                [disabled]="!branchForm.valid">{{ 'branch.branchEdit.Submit' | translate }}</button>
+        </form>
+    </div>
+</div>

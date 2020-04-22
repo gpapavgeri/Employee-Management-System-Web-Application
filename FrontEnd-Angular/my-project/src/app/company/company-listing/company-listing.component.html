@@ -1,0 +1,62 @@
+<div class="container">
+    <mat-toolbar>
+        <span class="fill-remaining-space"></span>
+        <span>{{ 'company.companyListing.Companies' | translate }}</span>
+        <span class="fill-remaining-space"></span>
+    </mat-toolbar>
+
+    <div class="search-div">
+        <button mat-raised-button routerLink="/new" class="create-button">
+            <mat-icon>add</mat-icon>{{ 'company.companyListing.CreateCompany' | translate }}
+        </button>
+
+        <button mat-raised-button>
+            <mat-form-field>
+                <mat-label>{{ 'company.companyListing.OrderBy' | translate }}</mat-label>
+                <mat-select [(ngModel)]="orderBy" (selectionChange)="sortCompanies()">
+                    <mat-option>{{ 'company.companyListing.None' | translate }}</mat-option>
+                    <mat-option *ngFor="let companyField of companyFields" [value]="companyField.value">
+                        {{ 'company.companyListing.'+ companyField.name | translate }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </button>
+
+        <button mat-raised-button class="restore-button" (click)="clearFilters()">
+            <mat-icon>restore</mat-icon>{{ 'company.companyListing.ResetFilters' | translate }}
+        </button>
+    </div>
+
+    <div class="mat-elevation-z8">
+        <table class="table">
+            <tr>
+                <th>{{ 'company.companyListing.Id' | translate }}</th>
+                <th>{{ 'company.companyListing.Name' | translate }}</th>
+            </tr>
+            <tr *ngFor="let company of companies">
+                <td>
+                    <span>{{ company.id }}</span>
+                </td>
+                <td>
+                    {{ company.name}}
+                </td>
+                <td>
+                    <a routerLink="/{{company.id}}">
+                        <button mat-icon-button title="{{ 'company.companyListing.EditCompany' | translate }}">
+                            <mat-icon>launch</mat-icon>
+                        </button>
+                    </a>
+                </td>
+                <td>
+                    <button mat-icon-button color="warn" title="{{ 'company.companyListing.DeleteCompany' | translate }}" (click)="delete(company)">
+                        <mat-icon>delete_outline</mat-icon>
+                    </button>
+                </td>
+            </tr>
+        </table>
+        <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" [showFirstLastButtons]="true"
+            (page)="paginateCompanies($event)">
+        </mat-paginator>
+    </div>
+
+</div>

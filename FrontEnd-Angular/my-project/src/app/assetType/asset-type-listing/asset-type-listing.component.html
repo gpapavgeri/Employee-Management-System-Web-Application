@@ -1,0 +1,62 @@
+<div class="container">
+    <mat-toolbar>
+        <span class="fill-remaining-space"></span>
+        <span>{{ 'assetType.assetTypeListing.AssetTypes' | translate }}</span>
+        <span class="fill-remaining-space"></span>
+    </mat-toolbar>
+
+    <div class="search-div">
+        <button mat-raised-button routerLink="/assetType/new" class="create-button">
+            <mat-icon>add</mat-icon>{{ 'assetType.assetTypeListing.CreateAssetType' | translate }}
+        </button>
+
+        <button mat-raised-button>
+            <mat-form-field>
+                <mat-label>{{ 'assetType.assetTypeListing.OrderBy' | translate }}</mat-label>
+                <mat-select [(ngModel)]="orderBy" (selectionChange)="sortAssetTypes()">
+                    <mat-option>{{ 'assetType.assetTypeListing.None' | translate }}</mat-option>
+                    <mat-option *ngFor="let assetTypeField of assetTypeFields" [value]="assetTypeField.value">
+                        {{ 'assetType.assetTypeListing.'+ assetTypeField.name | translate }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </button>
+
+        <button mat-raised-button class="restore-button" (click)="clearFilters()">
+            <mat-icon>restore</mat-icon>{{ 'assetType.assetTypeListing.ResetFilters' | translate }}
+        </button>
+    </div>
+
+    <div class="mat-elevation-z8">
+        <table class="table">
+            <tr>
+                <th>{{ 'assetType.assetTypeListing.Id' | translate }}</th>
+                <th>{{ 'assetType.assetTypeListing.Type' | translate }}</th>
+            </tr>
+            <tr *ngFor="let assetType of assetTypes">
+                <td>
+                    <span>{{ assetType.id }}</span>
+                </td>
+                <td>
+                    {{ assetType.type}}
+                </td>
+                <td>
+                    <a routerLink="/assetType/{{assetType.id}}">
+                        <button mat-icon-button title="{{ 'assetType.assetTypeListing.EditAssetType' | translate }}">
+                            <mat-icon>launch</mat-icon>
+                        </button>
+                    </a>
+                </td>
+                <td>
+                    <button mat-icon-button color="warn" title="{{ 'assetType.assetTypeListing.DeleteAssetType' | translate }}" (click)="delete(assetType)">
+                        <mat-icon>delete_outline</mat-icon>
+                    </button>
+                </td>
+            </tr>
+        </table>
+        <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" [showFirstLastButtons]="true"
+            (page)="paginateAssetTypes($event)">
+        </mat-paginator>
+    </div>
+
+</div>

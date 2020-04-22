@@ -1,0 +1,13 @@
+table {
+  width: 70%;
+}
+
+.create-button {
+  padding: 8px 16px 11.7px 16px !important;
+  margin-right: 10px;
+}
+
+.restore-button {
+  padding: 8px 16px 11.7px 16px !important;
+  margin-left: 10px;
+}

@@ -1,0 +1,78 @@
+<div class="container">
+    <mat-toolbar>
+        <span class="fill-remaining-space"></span>
+        <span>{{ 'branch.branchListing.Branches' | translate }}</span>
+        <span class="fill-remaining-space"></span>
+    </mat-toolbar>
+
+    <div class="search-div">
+        <button mat-raised-button routerLink="/branch/new" class="create-button">
+            <mat-icon>add</mat-icon>{{ 'branch.branchListing.CreateBranch' | translate }}
+        </button>
+
+        <button mat-raised-button class="select-button">
+            <mat-form-field>
+                <mat-label>{{ 'branch.branchListing.SelectCompany' | translate }}</mat-label>
+                <mat-select [(ngModel)]="company" (selectionChange)="refreshBranches()">
+                    <mat-option>{{ 'branch.branchListing.None' | translate }}</mat-option>
+                    <mat-option *ngFor="let company of companies" [value]="company">
+                        {{company.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </button>
+
+        <button mat-raised-button class="select-button">
+            <mat-form-field>
+                <mat-label>{{ 'branch.branchListing.OrderBy' | translate }}</mat-label>
+                <mat-select [(ngModel)]="orderBy" (selectionChange)="refreshBranches()">
+                    <mat-option>{{ 'branch.branchListing.None' | translate }}</mat-option>
+                    <mat-option *ngFor="let branchField of branchFields" [value]="branchField.value">
+                        {{ 'branch.branchListing.'+ branchField.name | translate }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </button>
+
+        <button mat-raised-button class="restore-button" (click)="clearFilters()">
+            <mat-icon>restore</mat-icon>{{ 'branch.branchListing.ResetFilters' | translate }}
+        </button>
+    </div>
+
+    <div class="mat-elevation-z8">
+        <table class="table">
+            <tr>
+                <th>{{ 'branch.branchListing.Id' | translate }}</th>
+                <th>{{ 'branch.branchListing.Name' | translate }}</th>
+                <th>{{ 'branch.branchListing.CompanyName' | translate }}</th>
+            </tr>
+            <tr *ngFor="let branch of branches">
+                <td>
+                    <span>{{ branch.id }}</span>
+                </td>
+                <td>
+                    {{ branch.name}}
+                </td>
+                <td>
+                    {{ branch.company.name}}
+                </td>
+                <td>
+                    <a routerLink="/branch/{{branch.id}}">
+                        <button mat-icon-button title="{{ 'branch.branchListing.EditBranch' | translate }}">
+                            <mat-icon>launch</mat-icon>
+                        </button>
+                    </a>
+                </td>
+                <td>
+                    <button mat-icon-button color="warn" title="{{ 'branch.branchListing.DeleteBranch' | translate }}" (click)="delete(branch)">
+                        <mat-icon>delete_outline</mat-icon>
+                    </button>
+                </td>
+            </tr>
+        </table>
+        <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" [showFirstLastButtons]="true"
+            (page)="paginateBranches($event)">
+        </mat-paginator>
+    </div>
+
+</div>

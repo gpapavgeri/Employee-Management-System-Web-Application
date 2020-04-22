@@ -1,0 +1,179 @@
+<div class="container">
+    <div *ngIf="officeForm">
+        <h1>{{ 'office.officeEdit.OfficeForm' | translate }}</h1>
+        <form [formGroup]="officeForm" (ngSubmit)="onSubmit()">
+            <div *ngIf="existed">
+                <label for="officeId">{{ 'office.officeEdit.Id' | translate }}</label>
+                <input type="text" id="officeId" formControlName="id" disabled>
+            </div>
+            <div>
+                <label for="code">{{ 'office.officeEdit.Code' | translate }}</label>
+                <input type="text" id="code" formControlName="code">
+            </div>
+            <div *ngIf="!existed && companies">
+                <label for="company">{{ 'office.officeEdit.Company' | translate }}</label>
+                <mat-form-field id="company">
+                    <mat-label>{{ 'office.officeEdit.SelectCompany' | translate }}</mat-label>
+                    <mat-select (selectionChange)="onCompanySelection($event)">
+                        <mat-option *ngFor="let company of companies" [value]="company">
+                            {{company.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div *ngIf="existed && company">
+                <label for="company">{{ 'office.officeEdit.Company' | translate }}</label>
+                <input type="text" id="company" value="{{company.name}}" disabled>
+            </div>
+
+            <div *ngIf="!existed && companyIsSelected && branches">
+                <label for="branch">{{ 'office.officeEdit.Branch' | translate }}</label>
+                <mat-form-field id="branch">
+                    <mat-label>{{ 'office.officeEdit.SelectBranch' | translate }}</mat-label>
+                    <mat-select formControlName="branch" id="branch" [disabled] = "existed">
+                        <mat-option *ngFor="let branch of branches" [value]="branch">
+                            {{branch.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <button class="add-button" mat-button type="button" (click)="openEmployees()" [disabled]="employeesSelected">
+                    <mat-icon>add</mat-icon>{{ 'office.officeEdit.AddEmployees' | translate }}
+                </button>
+                <button class="add-button" mat-button type="button" (click)="openAssets()" [disabled]="assetsSelected">
+                    <mat-icon>add</mat-icon>{{ 'office.officeEdit.AddAsset' | translate }}
+                </button>
+            </div>
+            <div *ngIf="existed && branch">
+                <label for="branch">{{ 'office.officeEdit.Branch' | translate }}</label>
+                <input type="text" id="branch" value="{{branch.name}}" disabled>
+                <button class="add-button" mat-button type="button" (click)="openEmployees()" [disabled]="employeesSelected">
+                    <mat-icon>add</mat-icon>{{ 'office.officeEdit.AddEmployees' | translate }}
+                </button>
+                <button class="add-button" mat-button type="button" (click)="openAssets()" [disabled]="assetsSelected">
+                    <mat-icon>add</mat-icon>{{ 'office.officeEdit.AddAsset' | translate }}
+                </button>
+            </div>
+
+            <div *ngIf="employeesSelected && employees">
+                <label for="table">{{ 'office.officeEdit.Employees' | translate }}</label>
+                        <table id="table">
+                            <tr>
+                                <th class="column-name">{{ 'office.officeEdit.Employee' | translate }}</th>
+                                <th class="column-name">{{ 'office.officeEdit.DateFrom' | translate }}</th>
+                                <th class="column-name">{{ 'office.officeEdit.DateTo' | translate }}</th>
+                                <th>
+                                    <button mat-button type="button" (click)="addEmployee()">
+                                        <mat-icon>add</mat-icon>{{ 'office.officeEdit.AddEmployee' | translate }}
+                                    </button>
+                                </th>
+                            </tr>
+                        </table>
+                        <table formArrayName="employees"
+                            *ngFor="let control of officeForm.get('employees')['controls']; let i = index">
+                            <tr [formGroupName]="i">
+                                <td>
+                                    <mat-form-field>
+                                        <mat-select formControlName="employeeId">
+                                                <mat-option *ngFor="let employee of employees" [value]="employee.id">
+                                                    {{employee.firstName}} {{employee.lastName}}
+                                                </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
+                                <td>
+                                    <mat-form-field>
+                                        <mat-label>{{ 'office.officeEdit.DateFrom' | translate }}
+                                        </mat-label>
+                                        <input matInput [matDatepicker]="picker1" formControlName="dateFrom">
+                                        <mat-datepicker-toggle matSuffix [for]="picker1">
+                                        </mat-datepicker-toggle>
+                                        <mat-datepicker #picker1></mat-datepicker>
+                                    </mat-form-field>
+                                </td>
+                                <td>
+                                    <mat-form-field>
+                                        <mat-label>{{ 'office.officeEdit.DateTo' | translate }}
+                                        </mat-label>
+                                        <input matInput [matDatepicker]="picker2" formControlName="dateTo">
+                                        <mat-datepicker-toggle matSuffix [for]="picker2">
+                                        </mat-datepicker-toggle>
+                                        <mat-datepicker #picker2></mat-datepicker>
+                                    </mat-form-field>
+                                </td>
+                                <td>
+                                    <button type="button" mat-icon-button color="warn"
+                                        title="{{ 'office.officeEdit.DeleteOffice' | translate }}"
+                                        (click)="removeEmployee(i)">
+                                        <mat-icon>delete_outline</mat-icon>
+                                    </button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div *ngIf="assetsSelected && assets">
+                        <label for="table">{{ 'office.officeEdit.Assets' | translate }}</label>
+                                <table id="table">
+                                    <tr>
+                                        <th class="column-name">{{ 'office.officeEdit.Asset' | translate }}</th>
+                                        <th class="column-name">{{ 'asset.assetEdit.DateFrom' | translate }}</th>
+                                        <th class="column-name">{{ 'office.officeEdit.DateTo' | translate }}</th>
+                                        <th>
+                                            <button mat-button type="button" (click)="addAsset()">
+                                                <mat-icon>add</mat-icon>{{ 'office.officeEdit.AddAsset' | translate }}
+                                            </button>
+                                        </th>
+                                    </tr>
+                                </table>
+                                <table formArrayName="assets"
+                                    *ngFor="let control of officeForm.get('assets')['controls']; let i = index">
+                                    <tr [formGroupName]="i">
+                                        <td>
+                                            <mat-form-field>
+                                                <mat-select formControlName="assetId">
+                                                        <mat-option *ngFor="let asset of assets" [value]="asset.id">
+                                                            {{asset.serialNumber}}
+                                                        </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </td>
+                                        <td>
+                                            <mat-form-field>
+                                                <mat-label>{{ 'asset.assetEdit.DateFrom' | translate }}
+                                                </mat-label>
+                                                <input matInput [matDatepicker]="picker1" formControlName="dateFrom">
+                                                <mat-datepicker-toggle matSuffix [for]="picker1">
+                                                </mat-datepicker-toggle>
+                                                <mat-datepicker #picker1></mat-datepicker>
+                                            </mat-form-field>
+                                        </td>
+                                        <td>
+                                            <mat-form-field>
+                                                <mat-label>{{ 'office.officeEdit.DateTo' | translate }}
+                                                </mat-label>
+                                                <input matInput [matDatepicker]="picker2" formControlName="dateTo">
+                                                <mat-datepicker-toggle matSuffix [for]="picker2">
+                                                </mat-datepicker-toggle>
+                                                <mat-datepicker #picker2></mat-datepicker>
+                                            </mat-form-field>
+                                        </td>
+                                        <td>
+                                            <button type="button" mat-icon-button color="warn"
+                                                title="{{ 'office.officeEdit.DeleteAsset' | translate }}"
+                                                (click)="removeAsset(i)">
+                                                <mat-icon>delete_outline</mat-icon>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <br>
+                            <div *ngIf="!officeForm.valid && officeForm.touched" class="warning">
+                                Fields with (*) are required
+                            </div>
+
+            <button type="submit" mat-button [disabled]="!officeForm.valid">{{ 'office.officeEdit.Submit' | translate }}</button>
+
+        </form>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+<div class="container">
+    <div *ngIf="assetTypeForm">
+        <h1>{{ 'assetType.assetTypeEdit.AssetTypeForm' | translate }}</h1>
+        <form [formGroup]="assetTypeForm" (ngSubmit)="onSubmit()">
+            <div *ngIf="existed">
+                <label for="companyId">{{ 'assetType.assetTypeEdit.Id' | translate }}</label>
+                <input type="text" id="companyId" formControlName="id" disabled>
+            </div>
+
+            <div>
+                <label for="type">{{ 'assetType.assetTypeEdit.Type' | translate }}</label>
+                <input type="text" id="type" formControlName="type" required #type>
+            </div>
+            <br>
+            <div *ngIf="!assetTypeForm.valid && assetTypeForm.touched" class="warning">
+                Fields with (*) are required
+            </div>
+            <button type="submit" mat-button class="submit"
+                [disabled]="!assetTypeForm.valid">{{ 'assetType.assetTypeEdit.Submit' | translate }}</button>
+
+        </form>
+    </div>
+</div>

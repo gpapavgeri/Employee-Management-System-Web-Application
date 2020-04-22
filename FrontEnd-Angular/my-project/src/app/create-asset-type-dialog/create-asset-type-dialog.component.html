@@ -1,0 +1,16 @@
+<div>
+    <div class="content-container">
+        <mat-icon id="close-icon" (click)="closeDialog()">close</mat-icon>
+        <span class="full-width">
+            <h1>{{ 'assetType.assetTypeListing.CreateAssetType' | translate }}</h1>
+            <div class="span-div">
+                <label for="type">{{ 'assetType.assetTypeEdit.Type' | translate }}</label><br>
+                <input type="text" id="type" [(ngModel)]="data.assetType" required>
+            </div>
+        </span>
+    </div>
+    <button mat-flat-button id="no-button"
+        (click)="closeDialog()">{{ 'confirmationDialog.Cancel' | translate }}</button>
+    <button mat-flat-button id="yes-button"
+        [mat-dialog-close]="data.assetType">{{ 'confirmationDialog.Create' | translate }}</button>
+</div>

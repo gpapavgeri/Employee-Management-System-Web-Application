@@ -1,0 +1,115 @@
+<div class="container">
+    <mat-toolbar>
+        <span class="fill-remaining-space"></span>
+        <span>{{ 'asset.assetListing.Assets' | translate }}</span>
+        <span class="fill-remaining-space"></span>
+    </mat-toolbar>
+
+    <div class="search-div">
+        <button mat-raised-button routerLink="/asset/new" class="create-button">
+            <mat-icon>add</mat-icon>{{ 'asset.assetListing.CreateAsset' | translate }}
+        </button>
+
+        <button mat-raised-button class="restore-button" (click)="clearFilters()">
+            <mat-icon>restore</mat-icon>{{ 'asset.assetListing.ResetFilters' | translate }}
+        </button>
+    </div>
+
+    <div>
+        <button mat-raised-button class="select-button">
+            <mat-form-field>
+                <mat-label>{{ 'asset.assetListing.SelectCompany' | translate }}</mat-label>
+                <mat-select [(ngModel)]="company" (selectionChange)="selectCompany()">
+                    <mat-option (click)="refreshCompanies()">{{ 'asset.assetListing.None' | translate }}</mat-option>
+                    <mat-option *ngFor="let company of companies" [value]="company">
+                        {{company.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </button>
+
+        <button mat-raised-button class="select-button">
+            <mat-form-field>
+                <mat-label>{{ 'employee.employeeListing.SelectOffice' | translate }}</mat-label>
+                <mat-select [(ngModel)]="office" (selectionChange)="refreshAssets()">
+                    <mat-option>{{ 'employee.employeeListing.None' | translate }}</mat-option>
+                    <mat-optgroup *ngFor="let branch of branches" [label]="branch.name">
+                        <mat-option *ngFor="let office of branch.offices" [value]="office">
+                            {{office.code}}
+                        </mat-option>
+                    </mat-optgroup>
+                </mat-select>
+            </mat-form-field>
+        </button>
+
+        <button mat-raised-button class="select-button">
+            <mat-form-field>
+                <mat-label>{{ 'asset.assetListing.SelectAssetType' | translate }}</mat-label>
+                <mat-select [(ngModel)]="assetType" (selectionChange)="refreshAssets()">
+                    <mat-option>{{ 'asset.assetListing.None' | translate }}</mat-option>
+                    <mat-option *ngFor="let assetType of assetTypes" [value]="assetType">
+                        {{assetType.type}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </button>
+
+        <button mat-raised-button class="select-button">
+            <mat-form-field>
+                <mat-label>{{ 'asset.assetListing.OrderBy' | translate }}</mat-label>
+                <mat-select [(ngModel)]="orderBy" (selectionChange)="refreshAssets()">
+                    <mat-option>{{ 'asset.assetListing.None' | translate }}</mat-option>
+                    <mat-option *ngFor="let assetField of assetFields" [value]="assetField.value">
+                        {{ 'asset.assetListing.'+ assetField.name | translate }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </button>
+    </div>
+
+    <div class="mat-elevation-z8">
+        <table class="table">
+            <tr>
+                <th>{{ 'asset.assetListing.Id' | translate }}</th>
+                <th>{{ 'asset.assetListing.SerialNumber' | translate }}</th>
+                <th>{{ 'asset.assetListing.Brand' | translate }}</th>
+                <th>{{ 'asset.assetListing.Company' | translate }}</th>
+                <th>{{ 'asset.assetListing.AssetType' | translate }}</th>
+            </tr>
+            <tr *ngFor="let asset of assets">
+                <td>
+                    <span>{{ asset.id }}</span>
+                </td>
+                <td>
+                    {{ asset.serialNumber}}
+                </td>
+                <td>
+                    {{ asset.brand}}
+                </td>
+                <td>
+                    {{ asset.company.name}}
+                </td>
+                <td>
+                    {{ asset.assetType.type}}
+                </td>
+                <td>
+                    <a routerLink="/asset/{{asset.id}}">
+                        <button mat-icon-button title="{{ 'asset.assetListing.EditAsset' | translate }}">
+                            <mat-icon>launch</mat-icon>
+                        </button>
+                    </a>
+                </td>
+                <td>
+                    <button mat-icon-button color="warn" title="{{ 'asset.assetListing.DeleteAsset' | translate }}"
+                        (click)="delete(asset)">
+                        <mat-icon>delete_outline</mat-icon>
+                    </button>
+                </td>
+            </tr>
+        </table>
+        <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+            [showFirstLastButtons]="true" (page)="paginateAssets($event)">
+        </mat-paginator>
+    </div>
+
+</div>

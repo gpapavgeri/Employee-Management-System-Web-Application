@@ -1,0 +1,109 @@
+<div class="container">
+    <mat-toolbar>
+        <span class="fill-remaining-space"></span>
+        <span>{{ 'employee.employeeListing.Employees' | translate }}</span>
+        <span class="fill-remaining-space"></span>
+    </mat-toolbar>
+
+    <div class="search-div">
+        <button mat-raised-button routerLink="/employee/new" class="create-button">
+            <mat-icon>add</mat-icon>{{ 'employee.employeeListing.CreateEmployee' | translate }}
+        </button>
+
+        <button mat-raised-button class="restore-button" (click)="clearFilters()">
+            <mat-icon>restore</mat-icon>{{ 'employee.employeeListing.ResetFilters' | translate }}
+        </button>
+
+    </div>
+    <div>
+        <button mat-raised-button class="select-button">
+            <mat-form-field>
+                <mat-label>{{ 'employee.employeeListing.SelectCompany' | translate }}</mat-label>
+                <mat-select [(ngModel)]="company" [compareWith]="compareFn" (selectionChange)="selectCompany()">
+                    <mat-option (click)="refreshCompanies()">{{ 'employee.employeeListing.None' | translate }}</mat-option>
+                    <mat-option *ngFor="let company of companies" [value]="company">
+                        {{company.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </button>
+
+        <button mat-raised-button class="select-button">
+            <mat-form-field>
+                <mat-label>{{ 'employee.employeeListing.SelectBranch' | translate }}</mat-label>
+                <mat-select [(ngModel)]="branch" (selectionChange)="selectBranch()">
+                    <mat-option (click)="refreshBranches()">{{ 'employee.employeeListing.None' | translate }}</mat-option>
+                    <mat-optgroup *ngFor="let company of companies" [label]="company.name">
+                        <mat-option *ngFor="let branch of company.branches" [value]="branch">
+                            {{branch.name}}
+                        </mat-option>
+                    </mat-optgroup>
+                </mat-select>
+            </mat-form-field>
+        </button>
+
+        <button mat-raised-button class="select-button">
+            <mat-form-field>
+                <mat-label>{{ 'employee.employeeListing.SelectOffice' | translate }}</mat-label>
+                <mat-select [(ngModel)]="officeId" (selectionChange)="refreshEmployees()">
+                    <mat-option>{{ 'employee.employeeListing.None' | translate }}</mat-option>
+                    <mat-optgroup *ngFor="let branch of branches" [label]="branch.name">
+                        <mat-option *ngFor="let office of branch.offices" [value]="office.id">
+                            {{office.code}}
+                        </mat-option>
+                    </mat-optgroup>
+                </mat-select>
+            </mat-form-field>
+        </button>
+
+        <button mat-raised-button class="select-button">
+            <mat-form-field>
+                <mat-label>{{ 'employee.employeeListing.OrderBy' | translate }}</mat-label>
+                <mat-select [(ngModel)]="orderBy" (selectionChange)="refreshEmployees()">
+                    <mat-option>{{ 'employee.employeeListing.None' | translate }}</mat-option>
+                    <mat-option *ngFor="let employeeField of employeeFields" [value]="employeeField.value">
+                        {{ 'employee.employeeListing.'+ employeeField.name | translate }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </button>
+    </div>
+
+    <div class="mat-elevation-z8">
+        <table class="table">
+            <tr>
+                <th>{{ 'employee.employeeListing.Id' | translate }}</th>
+                <th>{{ 'employee.employeeListing.FirstName' | translate }}</th>
+                <th>{{ 'employee.employeeListing.LastName' | translate }}</th>
+            </tr>
+            <tr *ngFor="let employee of employees">
+                <td>
+                    <span>{{ employee.id }}</span>
+                </td>
+                <td>
+                    {{ employee.firstName}}
+                </td>
+                <td>
+                    {{ employee.lastName}}
+                </td>
+                <td>
+                    <a routerLink="/employee/{{ employee.id }}">
+                        <button mat-icon-button title="{{ 'employee.employeeListing.EditEmployee' | translate }}">
+                            <mat-icon>launch</mat-icon>
+                        </button>
+                    </a>
+                </td>
+                <td>
+                    <button mat-icon-button color="warn"
+                        title="{{ 'employee.employeeListing.DeleteEmployee' | translate }}" (click)="delete(employee)">
+                        <mat-icon>delete_outline</mat-icon>
+                    </button>
+                </td>
+            </tr>
+        </table>
+        <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+            [showFirstLastButtons]="true" (page)="paginateEmployees($event)">
+        </mat-paginator>
+    </div>
+
+</div>
