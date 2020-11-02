@@ -1,4 +1,4 @@
-# Java-SpringBoot-Angular
+# Employee Management System Web Application
 Java project with Spring Boot and Angular
 
 ## Languages, Frameworks and Libraries:
